@@ -1,0 +1,17 @@
+{
+  "name": "Embedfy",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "nyhIr",
+  "actions": [
+    {
+      "behavior": "1",
+      "interpretation": "1",
+      "code": "(async () => {\n    const text = msg.content;\n    const embedfyChannel = server.data('embedfy-channel');\n    if (msg.channel.id == embedfyChannel) {\n        if (text) {\n            await msg.delete()\n            const em = new DiscordJS.RichEmbed()\n            .setColor(\"BLUE\")\n            .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n            .setDescription(text)\n            .setTimestamp();\n            msg.channel.send(em);\n        }\n    }\n})()",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "3"
+}
