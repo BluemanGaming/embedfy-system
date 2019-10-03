@@ -1,0 +1,17 @@
+{
+  "name": "SetChannel",
+  "permissions": "NONE",
+  "restriction": "1",
+  "_id": "KHHiu",
+  "actions": [
+    {
+      "behavior": "0",
+      "interpretation": "1",
+      "code": "(async () => {\n    const text = msg.content.replace(server.tag, '').split(/ +/g);\n    text.shift();\n    const channel = msg.mentions.channels.first();\n    if (msg.member.hasPermission(\"MANAGE_MESSAGES\")) {\n        if (me.hasPermission(\"MANAGE_MESSAGES\")) {\n            if (text.length >= 1) {\n                if (channel) {\n                    server.setData('embedfy-channel', channel.id)\n                    const em = new DiscordJS.RichEmbed()\n                    .setColor(\"BLUE\")\n                    .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n                    .setDescription(`Embedfy channel has been set to ${channel || 'error'}`);\n                    msg.channel.send(em);\n                } else if (text[0].toLowerCase() == 'none') {\n                    server.setData('embedfy-channel', '0')\n                    const em = new DiscordJS.RichEmbed()\n                    .setColor(\"BLUE\")\n                    .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n                    .setDescription(`The embedfy system has been disabled!`);\n                    msg.channel.send(em);\n                } else {\n                    const em = new DiscordJS.RichEmbed()\n                    .setColor(\"#FF0000\")\n                    .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n                    .setDescription(`Something went wrong when setting the channel, make sure to mention the correct channel or type **none** to disable the embedfy channel!`);\n                    msg.channel.send(em);\n                }\n            } else {\n                const em = new DiscordJS.RichEmbed()\n                .setColor(\"#FF0000\")\n                .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n                .setDescription(`Something went wrong when setting the channel, make sure to mention the correct channel or type **none** to disable the embedfy channel!`);\n                msg.channel.send(em);\n            }\n        } else {\n            const em = new DiscordJS.RichEmbed()\n            .setColor(\"#FF0000\")\n            .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n            .setDescription(`I do not have the required permission **Manage Messages** needed to execute the event connected to this system!`);\n            msg.channel.send(em);\n        }\n    } else {\n        const em = new DiscordJS.RichEmbed()\n        .setColor(\"#FF0000\")\n        .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)\n        .setDescription(`You do not have the required permission **Manage Messages** needed to execute this command!`);\n        msg.channel.send(em);\n    }\n})()",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "0"
+}
